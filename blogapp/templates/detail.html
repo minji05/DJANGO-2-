@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!doctype html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <style>
+    .container {
+      font-size: 20px;
+      font-family: Consolas, sans-serif;
+      top:50%;
+      left:35%;
+      height:100px;
+      text-align: center;
+     
+      
+    }
+    body {
+        background-color:rgb(220, 234, 255);
+        padding:80px;
+        
+    }
+    
+  </style>
+  </head>
+  <body>
+    <h1>상세페이지입니다.</h1>
+    <hr>
+    
+    <div class = "container">
+        <br>
+        <h2>{{ blog.title }}</h2>
+        <p>{{ blog.pub_date }}</p>
+        <p>{{ blog.body }}</p>
+    
+        <form action = "{% url 'edit' blog.id %}" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-dark" type="submit" value="수정하기">
+        </form>
+      
+        <form action = "{% url 'delete' blog.id %}" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-dark" type="submit" value="삭제하기">
+        </form>
+    
+        <a href="{% url 'home' %}">돌아가기</a>
+    </div>
+
+  </body>
+
+{% endblock %}
